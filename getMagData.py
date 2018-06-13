@@ -4,7 +4,7 @@ import csv
 import fileData as FD
 import matplotlib.pyplot as plt
 
-# beacon = [696,626.5,586,563.5,544.5,530.5,518,503.5,483.5]
+beacon = [696,626.5,586,563.5,544.5,530.5,518,503.5,483.5]
 
 
 simulated_straight = [394.6,289.1,222.4,177.2,144.9,120.9,102.5]
@@ -262,13 +262,15 @@ def main():
     
     # # plt.plot(beacon,'g')
 
-    plt.plot(addPlotCurve(compiled_data, 'Y', 3), 'b')
     plt.plot(addPlotCurve(simulated_xmas), "r")
+    plt.plot(addPlotCurve(compiled_data, 'Y', 3), "b")
+    plt.plot(addPlotCurve(beacon), "y")
+    plt.legend(["Simulated","DevKit","Beacon"])
 
     # plt.plot(findYRatio(compiled_data))
     # plt.plot(findYRatio(simulated_xmas))
     
-    # plt.title('Y-Axis Amplitude Comparison')
+    plt.title('Y-Axis Amplitude Comparison (XMas Tree)')
     plt.show()
 
 
