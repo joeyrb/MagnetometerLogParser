@@ -106,10 +106,13 @@ def isDataFile(f, f_type):
     else:
         return False
 
-
-
-
-
+# 
+# 
+# 
+#       MAIN
+# 
+# 
+# 
 
 def main():
     print(handleFiles())

@@ -39,6 +39,14 @@ def getValueByAxis(ds, axis):
     except Expression as e:
         print(e)
 
+# 
+# 
+# 
+#       MAIN
+# 
+# 
+# 
+
 def main():
     print(getMin(prsr.getValues()[0]))
 

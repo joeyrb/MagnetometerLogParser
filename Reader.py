@@ -61,11 +61,13 @@ def readCSV(fp):
         d = []
         csvReader = csv.reader(f)
         for l in csvReader:
-            d.append(l)
+            values = []
+            for v in l[-4:-1]:
+                values.append(v)
+            d.append(values)
         f.close()
         return d
     except Exception as e:
-        print("***\nError reading CSV file: \n" + str(e) + "\n***\n")
         exit
 
 # Opens a .LOG file and returns the contents as a string list.
@@ -78,7 +80,9 @@ def readLOG(fp):
             fReadr = csv.reader(f)
             for row in fReadr:
                 if len(row) > 0:
-                    d.append(row)
+                    val = row[0].split("\t")
+                    if len(val) == 3:
+                        d.append(val)
         f.close()
         return d
     except Exception as e:
