@@ -19,29 +19,34 @@ def getData():
     return readFileList(H.getFiles())
 
 def getDataFrom(wDir):
-    print(wDir)
+    # print(wDir)
     file_list = H.getFilesFrom(wDir)
     data = readFileList(fl)
-    print(data)
+    # print(data)
     return data
 
 # Read data from all files in the file list
 def readFileList(fl):
     data = []
+    # data.append(H.getFileType(fl[0]))
     for i in range(0, len(fl)):
         fp = fl[i]
         data.append(readFile(fp))
-    return data
+    # return data
+    return {str(H.getFileType(fl[0])) : data}
 
 # Reads the contents of a file (f) from a filepath (fp). 
 # Returns list of lines in f as string.
 def readFile(fp):
     try:
-        f = []
+        f = {}
+        # f.append(str(H.getFileName(fp)))
         if H.isCSV(fp):
-            f = readCSV(fp)
+            # f.append(readCSV(fp))
+            f = {str(H.getFileName(fp)) : readCSV(fp)}
         elif H.isLOG(fp):
-            f = readLOG(fp)
+            # f.append(readLOG(fp))
+            f = {str(H.getFileName(fp)) : readLOG(fp)}
         return f
     except Exception as e:
         print("Error reading file: \n" + str(e))
