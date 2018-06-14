@@ -17,34 +17,19 @@ These functions open log files and read the data
 '''
 
 def handleFiles():
-    pass
+    return getFiles()
 
 # Prompt user for directory
 def getFiles():
     w_dir = getDirFromUser()
-    fl = getFileList(w_dir)
-    return w_dir, fl
+    fl = getFilesFrom(w_dir)
+    return fl
 
 # Pass in directory and return a sorted list of files
-def getFilesFrom(wDir = ""):
-    if wDir == "":
-        wDir = CWD
-    return getFileList(wDir).sort()
-
-# Return unsorted list of files from directory
-def getFileList(wDir):
-    file_list = []
-    for f in os.listdir(wDir):
-        file_list.append(f)
-    return file_list
-
-# Returns the file extention as string (CSV, LOG, TXT)
-# return: fx = "file extention"
-def getFileType(f):
-    return str(f[-3:]).upper()
-
-def getFileExtension(f):
-    return str(f[-4:]).lower()
+def getFilesFrom(wDir):
+    fl = getFileList(wDir)
+    fl.sort()
+    return fl
 
 # Prompts user to select directory, returns pathname as string
 def getCWD():
@@ -56,6 +41,37 @@ def getDirFromUser():
     root = tk.Tk()
     root.withdraw()
     return filedialog.askdirectory()
+
+# Returns the file path (fp) of a file
+def getFilePath(wDir, fn):
+    return wDir + "/" + fn
+
+# Return unsorted list of files from directory
+def getFileList(wDir):
+    file_list = []
+    for fn in os.listdir(wDir):
+        fp = getFilePath(wDir, fn)
+        file_list.append(getFilePath(wDir, fn))
+    return file_list
+
+# Returns path name from a file path string
+def getPathName(fp):
+    file_path = fp.split(sep="/")
+    s = '/'
+    return s.join(file_path[:len(file_path)-2]) + "/"
+
+# Returns file name from a file path string
+def getFileName(fp):
+    file_path = fp.split(sep="/")
+    return file_path[-1]
+
+# Returns the file extention as string (CSV, LOG, TXT)
+# return: fx = "file extention"
+def getFileType(f):
+    return str(f[-3:]).upper()
+
+def getFileExtension(f):
+    return str(f[-4:]).lower()
 
 # Returns TRUE if file type is acceptable
 def isType(f):
@@ -96,7 +112,7 @@ def isDataFile(f, f_type):
 
 
 def main():
-    pass
+    print(handleFiles())
 
 if __name__ == '__main__':
     main()

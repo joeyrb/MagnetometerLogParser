@@ -1,3 +1,4 @@
+#!/usr/bin/python/python3
 '''
 Read the contents of a file and return the information as a string list.
 
@@ -14,14 +15,23 @@ DEFAULT_DIR_LOG = str(CWD) + "/beacon_xmas/"
 
 
 def getData():
-    return getDataFrom(getFiles())
+    # return getDataFrom(H.getFiles())
+    return readFileList(H.getFiles())
 
 def getDataFrom(wDir):
-    fl = H.getFilesFrom(wDir)
-    print(fl)
-    # for f in fl:
-    #     fp = wDir + "/" + f
-    #     print(fp)
+    print(wDir)
+    file_list = H.getFilesFrom(wDir)
+    data = readFileList(fl)
+    print(data)
+    return data
+
+# Read data from all files in the file list
+def readFileList(fl):
+    data = []
+    for i in range(0, len(fl)):
+        fp = fl[i]
+        data.append(readFile(fp))
+    return data
 
 # Reads the contents of a file (f) from a filepath (fp). 
 # Returns list of lines in f as string.
@@ -36,13 +46,6 @@ def readFile(fp):
     except Exception as e:
         print("Error reading file: \n" + str(e))
         exit
-
-# Read data from all files in the file list
-def readFileList(fl):
-    data = []
-    for f in fl:
-        print(readFile(f))
-        # data.append(readFile(f))
 
 # Opens a .CSV file and returns the contents as a string list.
 # Each list element is a line.
@@ -63,11 +66,10 @@ def readCSV(fp):
 # Opens a .LOG file and returns the contents as a string list.
 # Each list element is a line.
 def readLOG(fp):
-    print("dadsfasdfasdfasdf")
     try:
-        # return readFile(fp)
         d = []
         with open(fp, 'r', encoding="ISO-8859-1") as f:
+            next(f)
             fReadr = csv.reader(f)
             for row in fReadr:
                 if len(row) > 0:
@@ -88,8 +90,7 @@ def readLOG(fp):
 # 
 
 def main():
-    w_dir, fl = H.getFiles()
-    readFileList(fl)
+    print(getData())
 
 if __name__ == '__main__':
     main()

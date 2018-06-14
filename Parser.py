@@ -5,11 +5,18 @@ author: Joey Brown
 '''
 import os
 import csv
+import Reader as rdr
 
-# ---------- PARSERS ----------
-def parseCSV(data):
+
+def getValues():
+    ds = rdr.getData()
+    return ds
+    
+
+
+def parseCSV(ds):
     parsedData = []
-    for d in data:
+    for d in ds:
         if len(d) > 0:
             nums = []
             for i in range(0, len(d)):
@@ -21,9 +28,9 @@ def parseCSV(data):
             parsedData.append(nums)
     return parsedData
                     
-def parseLOG(data):
+def parseLOG(ds):
     parsedData = []
-    for d in data:
+    for d in ds:
         if len(d) > 0:
             s_nums = str(d[0]).split("\t")
             nums = []
@@ -35,6 +42,10 @@ def parseLOG(data):
             parsedData.append(nums)
     return parsedData
 
-def parseTXT(data):
-    pass
 
+def main():
+    v = getValues()
+    print(v)
+
+if __name__ == '__main__':
+    main()
