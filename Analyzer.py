@@ -5,39 +5,30 @@ author: Joey Brown
 '''
 import Parser as prsr
 import math
+import matplotlib.pyplot as plt
+import matplotlib
+
+
 
 def getResults():
-    pass
+    valset = prsr.getValues()
+    print(prsr.getValuesByAxis(valset[0], x=True))
+    # mins = []
+    # for vals in valset:
+    #     print(getMin(vals))
 
 def getMin(vs):
     return min(vs)
 
 def getMax(vs):
-    pass
+    return max(vs)
 
 def getCenter(vs):
-    pass
+    return (getMin(vs) + getMax(vs)) / 2
 
 def getAmplitude(vs):
-    pass
+    return math.fabs(getMin(vs) - getCenter(vs))
 
-def Axis_To_Int(axis):
-    a = axis.upper()
-    if a == 'X':
-        i = 0
-    elif a == 'Y':
-        i = 1
-    elif a == 'Z':
-        i = 2
-    else:
-        i = -1
-    return i
-
-def getValueByAxis(ds, axis):
-    try:
-        return ds[Axis_To_Int(axis)]
-    except Expression as e:
-        print(e)
 
 # 
 # 
@@ -48,7 +39,13 @@ def getValueByAxis(ds, axis):
 # 
 
 def main():
-    print(getMin(prsr.getValues()[0]))
+    # print(prsr.getValues())
+
+    values = prsr.getValues()
+    for v in values:
+        print(v)
+        print("\n\n")
+    
 
 if __name__ == '__main__':
     main()

@@ -15,24 +15,19 @@ DEFAULT_DIR_LOG = str(CWD) + "/beacon_xmas/"
 
 
 def getData():
-    # return getDataFrom(H.getFiles())
     return readFileList(H.getFiles())
 
 def getDataFrom(wDir):
-    # print(wDir)
     file_list = H.getFilesFrom(wDir)
     data = readFileList(fl)
-    # print(data)
     return data
 
 # Read data from all files in the file list
 def readFileList(fl):
     data = []
-    # data.append(H.getFileType(fl[0]))
     for i in range(0, len(fl)):
         fp = fl[i]
         data.append(readFile(fp))
-    # return data
     return {str(H.getFileType(fl[0])) : data}
 
 # Reads the contents of a file (f) from a filepath (fp). 
@@ -40,12 +35,9 @@ def readFileList(fl):
 def readFile(fp):
     try:
         f = {}
-        # f.append(str(H.getFileName(fp)))
         if H.isCSV(fp):
-            # f.append(readCSV(fp))
             f = {str(H.getFileName(fp)) : readCSV(fp)}
         elif H.isLOG(fp):
-            # f.append(readLOG(fp))
             f = {str(H.getFileName(fp)) : readLOG(fp)}
         return f
     except Exception as e:
