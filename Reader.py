@@ -10,8 +10,8 @@ import csv
 import Handler as H
 
 CWD = os.getcwd()
-DEFAULT_DIR_CSV = str(CWD) + "/devkit_xmas/"
-DEFAULT_DIR_LOG = str(CWD) + "/beacon_xmas/"
+# DEFAULT_DIR_CSV = str(CWD) + "/devkit_xmas/"
+# DEFAULT_DIR_LOG = str(CWD) + "/beacon_xmas/"
 
 
 def getData():
