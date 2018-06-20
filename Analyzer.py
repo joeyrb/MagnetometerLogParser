@@ -72,6 +72,8 @@ def getZResults(vs):
         zamplitude.append(getAmplitude(v))
     return [zmin, zmax, zcenter, zamplitude]
 
+
+
 # 
 # 
 # 

@@ -5,10 +5,10 @@ author: Joey Brown
 '''
 import os
 import csv
-import tkinter as tk
-from tkinter import filedialog
 import Reader as rdr
 import Parser as DP
+import tkinter as tk
+from tkinter import filedialog
 
 CWD = os.getcwd()
 
@@ -37,7 +37,7 @@ def getCWD():
 
 # Prompt user to select directory with data files.
 def getDirFromUser():
-    print("Which folder would you like to open?: ")
+    print("Select folder to open: ")
     root = tk.Tk()
     root.withdraw()
     return filedialog.askdirectory()

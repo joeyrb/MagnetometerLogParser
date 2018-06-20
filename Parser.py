@@ -16,7 +16,10 @@ def getValues():
 def parseDataSet(ds):
     # print(ds['LOG'])    # gets list of dictionaries. Keys = file names, values = file entries
     sets = ds[getParseType(ds)]
-    return parseValueSet(sets)
+    if isLOG(ds):
+        return scale(parseValueSet(sets), 1000)
+    else:
+        return parseValueSet(sets)
 
 def getValuesByAxis(vs, x=False, y=False, z=False):
     axis_values = []
@@ -53,6 +56,18 @@ def getParseType(ds):
         print("Error getting parse type.")
         exit
 
+def isLOG(ds):
+    if getParseType(ds) == 'LOG':
+        return True
+    else:
+        return False
+
+def isCSV(ds):
+    if getParseType(ds) == 'CSV':
+        return True
+    else:
+        return False
+
 # Return list of keys within the data set (keys = file names)
 def getKeychain(ds):
     keychain = []
@@ -69,21 +84,40 @@ def getValueList(vs):
     return data_values
 
 def parseValueSet(sets):
+    # Generate list of keys to access dictionary elements
     keychain = getKeychain(sets)
-    data_list = []
+    # Create a set of values to be returned
+    value_set = []
+    # For every element of the dataset, access values with keys from keychain
     for d in sets:
+        # Test every key in keychain until a key works, or move on to next d
         for i in range(0, len(keychain)):
+            # Once a key match is found, extract values
             if keychain[i] in d:
                 axis_values = []
+                # Convert every item (axes) of every element from string to float
                 for n in d[keychain[i]]:
+                    # Only include expected data formats (e.g. exclude labels/text)
                     if len(n) > 0 and len(n) < 5:
                         try:
                             axis_values.append([float(x) for x in n if x != []])
                         except Exception as e:
                             pass
-                data_list.append(axis_values)
-    return data_list
+                value_set.append(axis_values)
+    return value_set
 
+# 
+def scale(ds, scale_factor):
+    scaledDS = []
+    for ss in ds:
+        scaledSS = []
+        for e in ss:
+            scaledE = []
+            for i in range(0, len(e)):
+                scaledE.append(e[i] * scale_factor)
+            scaledSS.append(scaledE)
+        scaledDS.append(scaledSS)
+    return scaledDS
 # 
 # 
 # 
@@ -94,6 +128,9 @@ def parseValueSet(sets):
 
 def main():
     print(getValues())
+    # ds = getValues()
+
+    # print(scale(ds, 1000))
 
     # # Uncomment to view data set list
     # data_list = getValues()
