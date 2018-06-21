@@ -8,9 +8,14 @@ import csv
 import Handler as hdlr
 import Reader as rdr
 
-
+# Returned parsed data
 def getValues():
     ds = rdr.getData()
+    return parseDataSet(ds)
+
+# Return parsed data from specified directory
+def getValuesFrom(directory):
+    ds = rdr.getDataFrom(directory)
     return parseDataSet(ds)
     
 def parseDataSet(ds):

@@ -5,13 +5,25 @@ author: Joey Brown
 '''
 import Parser as prsr
 import math
-import matplotlib.pyplot as plt
-import matplotlib
 
 
 # Return results from data as min, max, center, amplitude for x, y, and z
 def getResults():
     values = prsr.getValues()
+    
+    x_vals = []
+    y_vals = []
+    z_vals = []
+
+    for v in values:
+        x_vals.append(prsr.getXValues(v))
+        y_vals.append(prsr.getYValues(v))
+        z_vals.append(prsr.getZValues(v))
+    return getXResults(x_vals), getYResults(y_vals), getZResults(z_vals)
+
+# Return results from a specified directory
+def getResultsFrom(directory):
+    values = prsr.getValuesFrom(directory)
     
     x_vals = []
     y_vals = []

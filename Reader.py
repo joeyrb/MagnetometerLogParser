@@ -13,13 +13,14 @@ CWD = os.getcwd()
 # DEFAULT_DIR_CSV = str(CWD) + "/devkit_xmas/"
 # DEFAULT_DIR_LOG = str(CWD) + "/beacon_xmas/"
 
-
+# Return data read from files
 def getData():
     return readFileList(H.getFiles())
 
+# Return read data from specified directory
 def getDataFrom(wDir):
     file_list = H.getFilesFrom(wDir)
-    data = readFileList(fl)
+    data = readFileList(file_list)
     return data
 
 # Read data from all files in the file list

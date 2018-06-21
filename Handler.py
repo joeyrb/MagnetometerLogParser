@@ -16,9 +16,6 @@ CWD = os.getcwd()
 These functions open log files and read the data
 '''
 
-def handleFiles():
-    return getFiles()
-
 # Prompt user for directory
 def getFiles():
     w_dir = getDirFromUser()
@@ -115,7 +112,7 @@ def isDataFile(f, f_type):
 # 
 
 def main():
-    print(handleFiles())
+    print(getFiles())
 
 if __name__ == '__main__':
     main()
