@@ -109,22 +109,6 @@ def genFigure(ds, ttl=''):
         p = figure(title=ttl, plot_width=500, plot_height=300)
     return p
 
-
-
-
-
-
-
-
-
-
-
-
-
-# Generate plot using plot points from the devkit, beacon, and simulation data
-def genDataPlot(bcon, dev, sim, config_type):
-    pass
-
 def genDistPlot(beacon, devkit, sim):
     bcn_xs = genDistXLabels(beacon)
     dev_xs = genDistXLabels(devkit)
@@ -146,8 +130,6 @@ def genDistPlot(beacon, devkit, sim):
 def genPhasePlot(bcon, dev, sim, config_type):
     pass
 
-
-
 def genConfigPlot(bcon, dev, sim, config_type):
     c = config_type.upper()
     if isStraight(c):
@@ -160,8 +142,7 @@ def genConfigPlot(bcon, dev, sim, config_type):
         return
     else:
         print("ERROR: there was a problem with the plot configuration.")
-
-
+        exit
 
 def genStraightPlot():
     beacon = anlyzr.getResultsFrom(dflts.getStraightDirs_Dist()[0])
@@ -169,14 +150,11 @@ def genStraightPlot():
     sim = dflts.getSimulatedData('straight')
     return genDistPlot(beacon, devkit, sim)
 
-
-
 def genTCrossPlot():
     beacon = anlyzr.getResultsFrom(dflts.getTCrossDirs_Dist()[0])
     devkit = anlyzr.getResultsFrom(dflts.getTCrossDirs_Dist()[1])
     sim = dflts.getSimulatedData('tcross')
     return genDistPlot(beacon, devkit, sim)
-
 
 def genTrianglePlot():
     beacon = anlyzr.getResultsFrom(dflts.getTriangleDirs_Dist()[0])
@@ -189,20 +167,6 @@ def genXMasPlot():
     devkit = anlyzr.getResultsFrom(dflts.getXMasDirs_Dist()[1])
     sim = dflts.getSimulatedData('xmas')
     return genDistPlot(beacon, devkit, sim)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 def isConfigType(config, type_check):
     c = config.upper()
@@ -236,22 +200,26 @@ def main():
     # devkit_res = anlyzr.getResults()
     # beacon_res = anlyzr.getResults()
 
+    output_file("./HTML/allconfigsdistances.html")
+
     
-    # Generate and Display
+    # Generate and Display data results
+    #   (uncomment sections below to run that configuration)
+
     # STRAIGHT UP
     # output_file("./HTML/straight.html")
-    # show(genStraightPlot())
+    show(genStraightPlot())
 
     # TCROSS
     # output_file("./HTML/tcross.html")
-    # show(genTCrossPlot())
+    show(genTCrossPlot())
 
     # TRIANGLE
     # output_file("./HTML/triangle.html")
-    # show(genTrianglePlot())
+    show(genTrianglePlot())
 
     # XMAS
-    output_file("./HTML/xmas.html")
+    # output_file("./HTML/xmas.html")
     show(genXMasPlot())
 
 
