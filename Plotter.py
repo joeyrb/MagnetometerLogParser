@@ -3,11 +3,8 @@ Plot the results from the test data log files.
 
 author: Joey Brown
 '''
-import matplotlib.pyplot as plt
-import matplotlib
-# Fix the problem with the program freezing after exit the plot window
-matplotlib.rcParams['backend'] = "qt4agg"
-matplotlib.rcParams['backend.qt4'] = "PySide"
+from bokeh.layouts import gridplot
+from bokeh.plotting import figure, output_file, show
 import Analyzer as anlyzr
 
 simulated_straight = [394.6,289.1,222.4,177.2,144.9,120.9,102.5]
@@ -58,20 +55,30 @@ def plotAxisAmplitude(res, axis):
 # 
 
 def main():
-    # devkit_res = anlyzr.getResults()
+    devkit_res = anlyzr.getResults()
     beacon_res = anlyzr.getResults()
 
-    
-    # plt.plot(plotAxisAmplitude(devkit_res,2), color='blue', marker='o')
-    plt.plot(plotAxisAmplitude(beacon_res,2), color='red', marker='o')
-    # plt.plot(simulated_straight, color='purple', marker='+')
-    # plt.legend(["DevKit", "Beacon","Simulation"])
-    plt.show()
-    
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111)
-    # ax.plot(plotAxisAmplitude(beacon_res,2), color='blue', marker='o')
-    # fig.show()
+    xAxis = [2,3,4,5,6]
+
+
+    output_file("log_lines.html")
+
+    s1 = figure(width = 250, plot_height = 250, title=None)
+    s1.circle(beacon_res, xAxis, size=10, color="navy", alpha=0.5)
+
+    s2 = figure(width=250, height=250, x_range=s1.x_range, y_range=s1.y_range, title=None)
+    s2.triangle(devkit_res, xAxis, size=10, color="firebrick", alpha=0.5)
+
+    s3 = figure(width=250, height=250, x_range=s1.x_range, y_range=s1.y_range, title=None)
+    s3.square(simulated_straight, xAxis, size=10, color="olive", alpha=0.5)
+
+    # Put subplots in a grid plot
+    p = gridplot([[s1, s2, s3]])
+
+
+    # Display Plot
+    show(p)
+
 
 
 if __name__ == '__main__':
