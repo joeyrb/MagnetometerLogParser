@@ -208,11 +208,11 @@ def main():
 
     # STRAIGHT UP
     # output_file("./HTML/straight.html")
-    show(genStraightPlot())
+    # show(genStraightPlot())
 
     # TCROSS
     # output_file("./HTML/tcross.html")
-    show(genTCrossPlot())
+    # show(genTCrossPlot())
 
     # TRIANGLE
     # output_file("./HTML/triangle.html")
@@ -220,7 +220,7 @@ def main():
 
     # XMAS
     # output_file("./HTML/xmas.html")
-    show(genXMasPlot())
+    # show(genXMasPlot())
 
 
 if __name__ == '__main__':
