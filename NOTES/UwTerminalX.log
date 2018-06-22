@@ -1,54 +1,0 @@
-﻿-------------------------------
- Log opened 01/05/2018 @ 09:52 
- UwTerminalX 1.09h 
- Port: COM9
--------------------------------
-
-
->
->at+bls
-
-SCAN: 01E89E9841E450 -51 "LAIRD BL652"
-SCAN: 01E89E9841E450 -52 "LAIRD BL652"
-SCAN: 01E89E9841E450 -46 "LAIRD BL652"
-SCAN: 01E89E9841E450 -51 "LAIRD BL652"
-SCAN: 01E89E9841E450 -52 "LAIRD BL652"
-SCAN: 01E89E9841E450 -52 "LAIRD BL652"
-SCAN: 01E89E9841E450 -44 "LAIRD BL652"
-SCAN: 01E89E9841E450 -51 "LAIRD BL652"
-SCAN: 01E89E9841E450 -52 "LAIRD BL652"
-SCAN: 01E89E9841E450 -52 "LAIRD BL652"
-SCAN: 01E89E9841E450 -44 "LAIRD BL652"
-SCAN: 01E89E9841E450 -52 "LAIRD BL652"
-SCAN: 01E89E9841E450 -51 "LAIRD BL652"stop
-
-OK>atd 01E89E9841E450
-Connected!
-Ready to transmit/receive!
-
-OK
-
-axav=-0.956	axmn=-0.965	axmx=-0.949	ayav=-0.118	aymn=-0.125	aymx=-0.109	azav=0.037	azmn=0.023	azmx=0.043	gxav=0.135	gxmn=0.030	gxmx=0.224	gyav=-1.212	gymn=-1.293	gymx=-1.144	gzav=3.760	gzmn=3.641	gzmx=3.873	mxav=0.172	mxmn=0.163	mxmx=0.185	myav=0.931	mymn=0.920	mymx=0.938	mzav=-0.304	mzmn=-0.314	mzmx=-0.293	btmp=221.526	bite=82.9	bvol=4.163	time=2017-10-08T08:57:01Z	imei=012345678901234
-axav=-0.980	axmn=-0.996	axmx=-0.973	ayav=-0.041	aymn=-0.070	aymx=-0.012	azav=0.006	azmn=-0.031	azmx=0.043	gxav=0.243	gxmn=0.037	gxmx=0.680	gyav=0.210	gymn=-0.194	gymx=0.658	gzav=20.560	gzmn=16.299	gzmx=22.617	mxav=0.153	mxmn=0.124	mxmx=0.177	myav=0.967	mymn=0.937	mymx=1.006	mzav=-0.299	mzmn=-0.316	mzmx=-0.262	btmp=216.277	bite=82.9	bvol=4.118	time=2017-10-08T08:57:33Z	imei=012345678901234
-axav=-0.698	axmn=-0.707	axmx=-0.684	ayav=-0.691	aymn=-0.723	aymx=-0.680	azav=0.006	azmn=-0.016	azmx=0.027	gxav=0.266	gxmn=0.187	gxmx=0.419	gyav=-1.216	gymn=-1.316	gymx=-1.084	gzav=3.813	gzmn=3.701	gzmx=3.866	mxav=-0.006	mxmn=-0.015	mxmx=0.002	myav=1.124	mymn=1.115	mymx=1.134	mzav=-0.250	mzmn=-0.266	mzmx=-0.227	btmp=216.277	bite=83.0	bvol=4.142	time=2017-10-08T08:57:43Z	imei=012345678901234
-axav=-0.965	axmn=-0.973	axmx=-0.961	ayav=-0.013	aymn=-0.016	aymx=-0.008	azav=0.020	azmn=0.016	azmx=0.035	gxav=0.127	gxmn=0.015	gxmx=0.239	gyav=-1.289	gymn=-1.368	gymx=-1.241	gzav=3.685	gzmn=3.409	gzmx=3.828	mxav=0.186	mxmn=0.180	mxmx=0.194	myav=0.895	mymn=0.882	mymx=0.909	mzav=-0.312	mzmn=-0.327	mzmx=-0.294	btmp=221.526	bite=82.9	bvol=4.132	time=2017-10-08T08:57:53Z	imei=012345678901234
-axav=-0.950	axmn=-0.953	axmx=-0.949	ayav=0.177	aymn=0.172	aymx=0.184	azav=0.030	azmn=0.016	azmx=0.039	gxav=0.163	gxmn=0.052	gxmx=0.262	gyav=-1.175	gymn=-1.293	gymx=-1.069	gzav=3.794	gzmn=3.701	gzmx=4.112	mxav=0.198	mxmn=0.188	mxmx=0.204	myav=0.816	mymn=0.803	mymx=0.830	mzav=-0.320	mzmn=-0.336	mzmx=-0.301	btmp=221.526	bite=82.9	bvol=4.098	time=2017-10-08T08:58:01Z	imei=012345678901234
-axav=-0.952	axmn=-0.961	axmx=-0.945	ayav=0.179	aymn=0.172	aymx=0.184	azav=0.048	azmn=0.016	azmx=0.074	gxav=0.265	gxmn=0.224	gxmx=0.314	gyav=-1.194	gymn=-1.241	gymx=-1.136	gzav=3.808	gzmn=3.723	gzmx=3.903	mxav=0.199	mxmn=0.186	mxmx=0.209	myav=0.815	mymn=0.797	mymx=0.827	mzav=-0.317	mzmn=-0.336	mzmx=-0.302	btmp=249.304	bite=82.9	bvol=4.156	time=2017-10-08T08:58:03Z	imei=012345678901234
-axav=-0.955	axmn=-0.969	axmx=-0.945	ayav=0.011	aymn=0.008	aymx=0.016	azav=0.023	azmn=-0.004	azmx=0.043	gxav=0.295	gxmn=0.194	gxmx=0.486	gyav=-1.209	gymn=-1.316	gymx=-1.002	gzav=3.832	gzmn=3.634	gzmx=4.008	mxav=0.188	mxmn=0.179	mxmx=0.198	myav=0.885	mymn=0.874	mymx=0.896	mzav=-0.312	mzmn=-0.327	mzmx=-0.296	btmp=221.526	bite=82.9	bvol=4.057	time=2017-10-08T08:58:13Z	imei=012345678901234
-axav=-0.923	axmn=-0.930	axmx=-0.914	ayav=0.290	aymn=0.277	aymx=0.309	azav=0.023	azmn=-0.004	azmx=0.047	gxav=0.162	gxmn=0.022	gxmx=0.322	gyav=-1.184	gymn=-1.458	gymx=-1.039	gzav=3.811	gzmn=3.679	gzmx=3.978	mxav=0.202	mxmn=0.189	mxmx=0.214	myav=0.771	mymn=0.758	mymx=0.786	mzav=-0.316	mzmn=-0.333	mzmx=-0.299	btmp=221.526	bite=82.9	bvol=4.167	time=2017-10-08T08:58:23Z	imei=012345678901234
-axav=-0.961	axmn=-0.969	axmx=-0.957	ayav=0.016	aymn=0.004	aymx=0.027	azav=0.038	azmn=0.016	azmx=0.078	gxav=0.255	gxmn=0.164	gxmx=0.404	gyav=-1.128	gymn=-1.286	gymx=-0.905	gzav=3.866	gzmn=3.522	gzmx=4.112	mxav=0.188	mxmn=0.179	mxmx=0.198	myav=0.883	mymn=0.868	mymx=0.900	mzav=-0.305	mzmn=-0.327	mzmx=-0.291	btmp=221.526	bite=82.9	bvol=4.125	time=2017-10-08T08:58:33Z	imei=012345678901234
-axav=-0.954	axmn=-0.965	axmx=-0.941	ayav=0.019	aymn=-0.008	aymx=0.055	azav=0.041	azmn=0.023	azmx=0.059	gxav=0.120	gxmn=0.037	gxmx=0.194	gyav=-1.924	gymn=-2.138	gymx=-1.772	gzav=-5.821	gzmn=-8.621	gzmx=-2.976	mxav=0.196	mxmn=0.182	mxmx=0.212	myav=0.843	mymn=0.815	mymx=0.864	mzav=-0.314	mzmn=-0.327	mzmx=-0.294	btmp=221.526	bite=82.9	bvol=4.111	time=2017-10-08T08:58:43Z	imei=012345678901234
-axav=-0.893	axmn=-0.898	axmx=-0.891	ayav=0.385	aymn=0.379	aymx=0.398	azav=0.017	azmn=0.016	azmx=0.020	gxav=0.276	gxmn=0.187	gxmx=0.396	gyav=-1.270	gymn=-1.308	gymx=-1.211	gzav=4.136	gzmn=3.933	gzmx=4.299	mxav=0.194	mxmn=0.185	mxmx=0.208	myav=0.734	mymn=0.719	mymx=0.752	mzav=-0.314	mzmn=-0.328	mzmx=-0.294	btmp=221.526	bite=82.9	bvol=4.115	time=2017-10-08T08:58:53Z	imei=012345678901234
-axav=-0.968	axmn=-0.977	axmx=-0.961	ayav=0.020	aymn=0.012	aymx=0.027	azav=0.031	azmn=0.012	azmx=0.047	gxav=0.304	gxmn=0.030	gxmx=0.471	gyav=-1.188	gymn=-1.271	gymx=-1.092	gzav=4.013	gzmn=3.918	gzmx=4.135	mxav=0.189	mxmn=0.180	mxmx=0.200	myav=0.878	mymn=0.868	mymx=0.890	mzav=-0.306	mzmn=-0.319	mzmx=-0.294	btmp=216.277	bite=82.9	bvol=4.108	time=2017-10-08T08:59:01Z	imei=012345678901234
-axav=-0.964	axmn=-0.969	axmx=-0.957	ayav=0.021	aymn=0.020	aymx=0.027	azav=0.006	azmn=-0.008	azmx=0.035	gxav=0.061	gxmn=-0.082	gxmx=0.164	gyav=-1.316	gymn=-1.391	gymx=-1.196	gzav=3.836	gzmn=1.936	gzmx=4.037	mxav=0.190	mxmn=0.180	mxmx=0.200	myav=0.878	mymn=0.862	mymx=0.888	mzav=-0.309	mzmn=-0.322	mzmx=-0.291	btmp=241.035	bite=82.9	bvol=4.167	time=2017-10-08T08:59:03Z	imei=012345678901234
-axav=-0.800	axmn=-0.805	axmx=-0.797	ayav=0.574	aymn=0.566	aymx=0.582	azav=0.009	azmn=0.000	azmx=0.020	gxav=0.134	gxmn=0.060	gxmx=0.299	gyav=-1.231	gymn=-1.338	gymx=-1.151	gzav=3.735	gzmn=3.484	gzmx=3.910	mxav=0.168	mxmn=0.159	mxmx=0.183	myav=0.653	mymn=0.636	mymx=0.668	mzav=-0.304	mzmn=-0.320	mzmx=-0.290	btmp=221.526	bite=82.9	bvol=4.098	time=2017-10-08T08:59:13Z	imei=012345678901234
-axav=-0.958	axmn=-0.965	axmx=-0.945	ayav=0.029	aymn=0.020	aymx=0.031	azav=0.008	azmn=0.004	azmx=0.012	gxav=0.267	gxmn=0.112	gxmx=0.336	gyav=-1.202	gymn=-1.226	gymx=-1.077	gzav=3.929	gzmn=3.708	gzmx=4.209	mxav=0.190	mxmn=0.175	mxmx=0.200	myav=0.878	mymn=0.865	mymx=0.888	mzav=-0.309	mzmn=-0.327	mzmx=-0.296	btmp=216.277	bite=82.9	bvol=4.122	time=2017-10-08T08:59:23Z	imei=012345678901234
-axav=-0.958	axmn=-0.973	axmx=-0.949	ayav=0.174	aymn=0.125	aymx=0.207	azav=-0.007	azmn=-0.031	azmx=0.027	gxav=0.280	gxmn=0.075	gxmx=0.426	gyav=-2.198	gymn=-2.251	gymx=-2.108	gzav=-8.353	gzmn=-9.892	gzmx=-6.325	mxav=0.196	mxmn=0.182	mxmx=0.212	myav=0.795	mymn=0.775	mymx=0.822	mzav=-0.318	mzmn=-0.333	mzmx=-0.302	btmp=221.526	bite=82.9	bvol=4.028	time=2017-10-08T08:59:33Z	imei=012345678901234
-axav=-0.681	axmn=-0.691	axmx=-0.676	ayav=0.737	aymn=0.715	aymx=0.746	azav=-0.009	azmn=-0.035	azmx=0.031	gxav=0.166	gxmn=0.022	gxmx=0.336	gyav=-1.187	gymn=-1.308	gymx=-1.069	gzav=3.911	gzmn=3.394	gzmx=4.120	mxav=0.110	mxmn=0.096	mxmx=0.124	myav=0.594	mymn=0.575	mymx=0.607	mzav=-0.284	mzmn=-0.302	mzmx=-0.267	btmp=216.277	bite=83.0	bvol=4.146	time=2017-10-08T08:59:43Z	imei=012345678901234
-axav=-0.967	axmn=-0.969	axmx=-0.961	ayav=0.025	aymn=0.020	aymx=0.035	azav=0.020	azmn=0.012	azmx=0.027	gxav=0.066	gxmn=-0.105	gxmx=0.217	gyav=-1.196	gymn=-1.286	gymx=-1.092	gzav=3.897	gzmn=3.574	gzmx=4.120	mxav=0.191	mxmn=0.179	mxmx=0.201	myav=0.872	mymn=0.858	mymx=0.888	mzav=-0.311	mzmn=-0.334	mzmx=-0.294	btmp=221.526	bite=82.9	bvol=4.098	time=2017-10-08T08:59:53Z	imei=012345678901234
-axav=-0.946	axmn=-0.949	axmx=-0.938	ayav=0.244	aymn=0.227	aymx=0.250	azav=0.019	azmn=0.008	azmx=0.031	gxav=0.215	gxmn=-0.037	gxmx=0.329	gyav=-1.254	gymn=-1.436	gymx=-1.069	gzav=3.858	gzmn=3.708	gzmx=4.067	mxav=0.197	mxmn=0.186	mxmx=0.212	myav=0.798	mymn=0.787	mymx=0.812	mzav=-0.318	mzmn=-0.334	mzmx=-0.305	btmp=216.277	bite=82.9	bvol=4.209	time=2017-10-08T09:00:01Z	imei=012345678901234
-axav=-0.940	axmn=-0.945	axmx=-0.934	ayav=0.217	aymn=0.207	aymx=0.227	azav=0.023	azmn=0.016	azmx=0.039	gxav=0.209	gxmn=0.015	gxmx=0.434	gyav=-1.328	gymn=-1.398	gymx=-1.204	gzav=3.876	gzmn=3.664	gzmx=4.075	mxav=0.199	mxmn=0.188	mxmx=0.212	myav=0.800	mymn=0.790	mymx=0.815	mzav=-0.317	mzmn=-0.333	mzmx=-0.301	btmp=241.035	bite=82.9	bvol=4.135	time=2017-10-08T09:00:03Z	imei=012345678901234
-axav=-0.958	axmn=-0.961	axmx=-0.953	ayav=0.029	aymn=0.020	aymx=0.043	azav=0.018	azmn=-0.004	azmx=0.039	gxav=0.216	gxmn=0.157	gxmx=0.374	gyav=-1.228	gymn=-1.308	gymx=-1.144	gzav=3.895	gzmn=3.716	gzmx=3.948	mxav=0.191	mxmn=0.180	mxmx=0.198	myav=0.879	mymn=0.868	mymx=0.890	mzav=-0.311	mzmn=-0.330	mzmx=-0.298	btmp=216.277	bite=82.9	bvol=4.111	time=2017-10-08T09:00:13Z	imei=012345678901234
-axav=-0.938	axmn=-0.945	axmx=-0.914	ayav=0.257	aymn=0.246	aymx=0.277	azav=0.001	azmn=-0.031	azmx=0.027	gxav=0.217	gxmn=0.105	gxmx=0.307	gyav=-1.188	gymn=-1.271	gymx=-1.077	gzav=3.892	gzmn=3.649	gzmx=4.037	mxav=0.201	mxmn=0.186	mxmx=0.214	myav=0.767	mymn=0.751	mymx=0.787	mzav=-0.314	mzmn=-0.327	mzmx=-0.299	btmp=221.526	bite=82.9	bvol=4.153	time=2017-10-08T09:00:23Z	imei=012345678901234
-axav=-0.918	axmn=-0.938	axmx=-0.910	ayav=0.305	aymn=0.301	aymx=0.309	azav=0.030	azmn=0.012	azmx=0.039	gxav=0.031	gxmn=-0.366	gxmx=0.239	gyav=0.042	gymn=-0.239	gymx=0.277	gzav=18.449	gzmn=15.851	gzmx=21.032	mxav=0.199	mxmn=0.185	mxmx=0.214	myav=0.773	mymn=0.754	mymx=0.793	mzav=-0.310	mzmn=-0.330	mzmx=-0.296	btmp=221.526	bite=82.9	bvol=4.115	time=2017-10-08T09:00:33Z	imei=012345678901234
-

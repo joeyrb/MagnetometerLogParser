@@ -200,15 +200,15 @@ def main():
     # devkit_res = anlyzr.getResults()
     # beacon_res = anlyzr.getResults()
 
-    output_file("./HTML/allconfigsdistances.html")
+    # output_file("./HTML/allconfigsdistances.html")
 
     
     # Generate and Display data results
     #   (uncomment sections below to run that configuration)
 
     # STRAIGHT UP
-    # output_file("./HTML/straight.html")
-    # show(genStraightPlot())
+    output_file("./HTML/straight.html")
+    show(genStraightPlot())
 
     # TCROSS
     # output_file("./HTML/tcross.html")
@@ -216,7 +216,7 @@ def main():
 
     # TRIANGLE
     # output_file("./HTML/triangle.html")
-    show(genTrianglePlot())
+    # show(genTrianglePlot())
 
     # XMAS
     # output_file("./HTML/xmas.html")

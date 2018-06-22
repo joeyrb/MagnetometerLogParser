@@ -1,1 +1,5 @@
 *.pyc
+/NOTES
+/Testing
+/Beacon/*
+/DevKit/*
