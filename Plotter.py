@@ -265,8 +265,8 @@ def main():
     #   (uncomment sections below to run that configuration)
 
     # STRAIGHT UP
-    # output_file("./HTML/straight.html")
-    # show(genStraightPlot())
+    output_file("./HTML/straight.html")
+    show(genStraightPlot())
 
     # TCROSS
     # output_file("./HTML/tcross.html")
