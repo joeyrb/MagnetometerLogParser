@@ -102,7 +102,7 @@ def genFigure(ds, ttl=''):
 def genDistPlot(beacon, devkit, sim):
     bcn_xs = genDistXLabels(beacon)
     dev_xs = genDistXLabels(devkit)
-    sim_xs = genDistXLabels(sim)
+    sim_xs = genDistXLabels(sim,0)
     
     bc_pts = plotYAmplitude(beacon)
     dk_pts = plotYAmplitude(devkit)
@@ -289,12 +289,14 @@ def main():
 
     # STRAIGHT UP
     # output_file("./HTML/straight.html", title="Straight Up")
+    # output_file("./HTML/straight_singleaxis.html", title="Straight Up")
     # show(genStraightPlot())
+    # show(genSingleDistPlot(2, 'straight', "Straight Up (Z)"))
 
     # TCROSS
     output_file("./HTML/tcross_singleaxis.html", title="T-Crossarm")
-    # show(genTCrossPlot())
-    show(genSingleDistPlot(0, 'tcross', "T-Crossarm (Y)"))
+    show(genTCrossPlot())
+    # show(genSingleDistPlot(2, 'tcross', "T-Crossarm (Z)"))
 
     # TRIANGLE
     # output_file("./HTML/triangle.html", title="Triangle")

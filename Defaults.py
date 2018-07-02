@@ -135,6 +135,25 @@ def getDevKitPhaseDirs():
 
 # Return directory listing for both devices by configuration
 # DISTANCE
+# Return correct path according to configuration and device from input
+def getDistDirs(config, device):
+    C = config.upper()
+    D = device.upper()
+    # decide which configuration
+    if C == 'STRAIGHT':
+        pass
+    elif C == 'TCROSS':
+        pass
+    elif C == 'TRIANGLE':
+        pass
+    elif C == 'XMAS':
+        pass
+    else:
+        print("ERROR: There was a problem getting distance directories.")
+        exit
+    # decide which device
+
+
 def getStraightDirs_Dist(device = ''):
     D = device.upper()
     if D == '':

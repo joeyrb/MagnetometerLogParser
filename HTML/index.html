@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>Magnetometer Testing</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -36,15 +36,20 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   </div>
   <div class="w3-bar-block">
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Overview</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Views</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Traffic</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Geo</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Orders</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  General</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a><br><br>
+    
+    <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"> DISTANCE</a>    
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Straight</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  T-Crossarm</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Triangle</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  X-Mas Tree</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  All Configurations</a><br><br>
+
+    <a href="#" class="w3-bar-item w3-button w3-padding w3-green"> PHASE</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  Straight</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  T-Crossarm</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Triangle</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  X-Mas Tree</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  All Configurations</a><br><br>
   </div>
 </nav>
 
@@ -57,9 +62,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
   <!-- Header -->
   <header class="w3-container" style="padding-top:22px">
-    <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
+    <h5><b><i class="fa fa-dashboard"></i> Dashboard</b></h5>
   </header>
-
+<!-- 
   <div class="w3-row-padding w3-margin-bottom">
     <div class="w3-quarter">
       <div class="w3-container w3-red w3-padding-16">
@@ -101,18 +106,71 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <h4>Users</h4>
       </div>
     </div>
-  </div>
+  </div> -->
 
+  <!-- CONTENT -->
   <div class="w3-panel">
     <div class="w3-row-padding" style="margin:0 -16px">
+      
+      <!-- DIAGRAM -->
       <div class="w3-third">
-        <h5>Regions</h5>
-        <img src="/w3images/region.jpg" style="width:100%" alt="Google Regional Map">
+        <h5>Crossarm Assembly (<i>T-Crossarm</i>)</h5>
+        <img src="./images/diagrams/tcross_diagram.PNG" style="width:100%" alt="Google Regional Map">
       </div>
+      
+      <!-- TABLE -->
       <div class="w3-twothird">
-        <h5>Feeds</h5>
+        <h5>Results</h5>
         <table class="w3-table w3-striped w3-white">
           <tr>
+            <th>Distance (ft)</th>
+            <th>min (X)</th>
+            <th>max (X)</th>
+            <th>center (X)</th>
+            <th>amplitude (X)</th>
+            <th>ratio (X)</th>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>200</td>
+            <td>200</td>
+            <td>200</td>
+            <td>200</td>
+            <td>200</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>200</td>
+            <td>200</td>
+            <td>200</td>
+            <td>200</td>
+            <td>200</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>200</td>
+            <td>200</td>
+            <td>200</td>
+            <td>200</td>
+            <td>200</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>200</td>
+            <td>200</td>
+            <td>200</td>
+            <td>200</td>
+            <td>200</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>200</td>
+            <td>200</td>
+            <td>200</td>
+            <td>200</td>
+            <td>200</td>
+          </tr>
+          <!-- <tr>
             <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
             <td>New record, over 90 views.</td>
             <td><i>10 mins</i></td>
@@ -146,12 +204,35 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
             <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
             <td>New shares.</td>
             <td><i>39 mins</i></td>
-          </tr>
+          </tr> -->
         </table>
       </div>
     </div>
   </div>
   <hr>
+  
+  <div class="w3-container">
+    <div class="w3-panel">
+      <!-- CHARTS -->
+      <h5>Axis Charts</h5>
+      <div class="w3-row-padding">
+        <!-- X -->
+        <div class="w3-third">
+          <img src="./images/charts/tcross/dist/tcross_multiline_x.png" style="width: 100%">
+        </div>
+        <!-- Y -->
+        <div class="w3-third">
+          <img src="./images/charts/tcross/dist/tcross_multiline_y.png" style="width: 100%">
+        </div>
+        <!-- Z -->
+        <div class="w3-third">
+          <img src="./images/charts/tcross/dist/tcross_multiline_z.png" style="width: 100%">
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <div class="w3-container">
     <h5>General Stats</h5>
     <p>New Visitors</p>
