@@ -85,17 +85,104 @@ def Straight(distances):
     
     return B1, Bx1, By1, B2, Bx2, By2, B3, Bx3, By3
 
-
-
 def TCross(distances):
     w = [ft_2_m(3.66666666), 0, ft_2_m(3.66666666)]
+    B1 = []
+    B2 = []
+    B3 = []
+    Bx1 = []
+    Bx2 = []
+    Bx3 = []
+    By1 = []
+    By2 = []
+    By3 = []
+    for d in distances:
+        d1 = d
+        b1 = getB(getR(d1,w[0]))
+        B1.append(b1)
+        Bx1.append(getBx(b1, d1, w[0]))
+        By1.append(getBy(b1, d1, w[0]))
+
+        d2 = d1
+        b2 = getB(getR(d2, w[1]))
+        B2.append(b2)
+        Bx2.append(getBx(b2, d2, w[1]))
+        By2.append(getBy(b2, d2, w[1]))
+        
+        d3 = d2
+        b3 = getB(getR(d3, w[2]))
+        B3.append(b3)
+        Bx3.append(getBx(b3, d3, w[2]))
+        By3.append(getBy(b3, d3, w[2]))
+    
+    return B1, Bx1, By1, B2, Bx2, By2, B3, Bx3, By3
 
 def Triangle(distances):
     w = [ft_2_m(3.66666666), 0, ft_2_m(3.66666666)]
+    B1 = []
+    B2 = []
+    B3 = []
+    Bx1 = []
+    Bx2 = []
+    Bx3 = []
+    By1 = []
+    By2 = []
+    By3 = []
+    for d in distances:
+        d1 = d
+        b1 = getB(getR(d1,w[0]))
+        B1.append(b1)
+        Bx1.append(getBx(b1, d1, w[0]))
+        By1.append(getBy(b1, d1, w[0]))
+
+        d2 = d1+ft_2_m(2)
+        b2 = getB(getR(d2, w[1]))
+        B2.append(b2)
+        Bx2.append(getBx(b2, d2, w[1]))
+        By2.append(getBy(b2, d2, w[1]))
+        
+        d3 = d1
+        b3 = getB(getR(d3, w[2]))
+        B3.append(b3)
+        Bx3.append(getBx(b3, d3, w[2]))
+        By3.append(getBy(b3, d3, w[2]))
+    
+    return B1, Bx1, By1, B2, Bx2, By2, B3, Bx3, By3
 
 def XMas(distances):
     w = [ft_2_m(3.3), ft_2_m(3.3), 0]
+    B1 = []
+    B2 = []
+    B3 = []
+    Bx1 = []
+    Bx2 = []
+    Bx3 = []
+    By1 = []
+    By2 = []
+    By3 = []
+    for d in distances:
+        # Phase 1
+        d1 = d
+        b1 = getB(getR(d1,w[0]))
+        B1.append(b1)
+        Bx1.append(getBx(b1, d1, w[0]))
+        By1.append(getBy(b1, d1, w[0]))
 
+        # Phase 2
+        d2 = d1+ft_2_m(2)
+        b2 = getB(getR(d2, w[1]))
+        B2.append(b2)
+        Bx2.append(getBx(b2, d2, w[1]))
+        By2.append(getBy(b2, d2, w[1]))
+        
+        # Phase 3
+        d3 = d2 + ft_2_m(2)
+        b3 = getB(getR(d3, w[2]))
+        B3.append(b3)
+        Bx3.append(getBx(b3, d3, w[2]))
+        By3.append(getBy(b3, d3, w[2]))
+    
+    return B1, Bx1, By1, B2, Bx2, By2, B3, Bx3, By3
 
 def main():
     # Test for phase 1 on t-crossarm
@@ -105,10 +192,25 @@ def main():
         h.append(ft_2_m(d))
     H = sorted(h)
     
+    print('Straight:')
     straight = genSimData('straight', H)
     for s in straight:
         print(sorted(s, reverse=True))
         print()
+    print('T-Crossarm:')
+    tcross = genSimData('tcross', H)
+    for T in tcross:
+        print(sorted(T, reverse=True))
+        print()
+    print('Triangle:')
+    triangle = genSimData('triangle', H)
+    for t in triangle:
+        print(sorted(t, reverse=True))
+        print()
+    print('X-Mas:')
+    xmas = genSimData('xmas', H)
+    for x in xmas:
+        print(sorted(x, reverse=True))
         print()
 
 if __name__ == '__main__':
