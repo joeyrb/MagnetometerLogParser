@@ -135,6 +135,7 @@ def main():
     print(getValues())
     # ds = getValues()
 
+    # Scale the beacon's data from Gauss to mGauss (x1000)
     # print(scale(ds, 1000))
 
     # # Uncomment to view data set list

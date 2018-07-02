@@ -244,7 +244,7 @@ def genSingleDistPlot(axis, config, title):
     # return final generated plot that contains 3 curves (with legend)
     return p
         
-
+# Generate a full page of all test configs
 def genAllConfigsPlot():
     str8X = genSingleDistPlot(0,'Straight',"Straight Up (X-axis)")
     str8Y = genSingleDistPlot(1,'Straight',"Straight Up (Y-axis)")
@@ -288,26 +288,27 @@ def main():
     #   (uncomment sections below to run that configuration)
 
     # STRAIGHT UP
-    output_file("./HTML/straight.html", title="Straight Up")
-    show(genStraightPlot())
+    # output_file("./HTML/straight.html", title="Straight Up")
+    # show(genStraightPlot())
 
     # TCROSS
-    output_file("./HTML/tcross.html", title="T-Crossarm")
-    show(genTCrossPlot())
+    output_file("./HTML/tcross_singleaxis.html", title="T-Crossarm")
+    # show(genTCrossPlot())
+    show(genSingleDistPlot(0, 'tcross', "T-Crossarm (Y)"))
 
     # TRIANGLE
-    output_file("./HTML/triangle.html", title="Triangle")
-    show(genTrianglePlot())
+    # output_file("./HTML/triangle.html", title="Triangle")
+    # show(genTrianglePlot())
 
     # XMAS
-    output_file("./HTML/xmas.html", title="X-Mas Tree")
-    show(genXMasPlot())
+    # output_file("./HTML/xmas.html", title="X-Mas Tree")
+    # show(genXMasPlot())
 
 
 
     # ALL CONFIGS PLOT
-    output_file( "./HTML/singleplot_allaxes_allconfigs.html", title="All Configs" )    
-    show( gridplot(genAllConfigsPlot(), sizing_mode="fixed" ) )
+    # output_file( "./HTML/singleplot_allaxes_allconfigs.html", title="All Configs" )
+    # show( gridplot(genAllConfigsPlot(), sizing_mode="fixed" ) )
 
 
 if __name__ == '__main__':
