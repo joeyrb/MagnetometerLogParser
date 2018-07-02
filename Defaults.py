@@ -21,10 +21,17 @@ CWD = os.getcwd()
 
 # -----SIMULATION DATA-------------------------------------------------------
 # Simulated data results (taken from excel sheets by Brian Hemmelman)
-sim_straight = [394.6,222.4,144.9,120.9,102.5]
-sim_tcross = [500,422,371,324,283,247,217,191,168]
-sim_triangle = []
-sim_xmas = [409.7,324,259.2,210.5,173.6,145.1,123,105.4,91.2]
+# 9 POINTS
+# sim_straight = [394.6,222.4,144.9,120.9,102.5]
+# sim_tcross = [500,422,371,324,283,247,217,191,168]
+# sim_triangle = [0, 0, 0, 0, 0, 0, 0, 0]
+# sim_xmas = [409.7,324,259.2,210.5,173.6,145.1,123,105.4,91.2]
+# 5 POINTS
+sim_straight = [394.6, 222.4, 144.9, 120.9, 102.5]
+sim_tcross = [500, 371, 283, 217, 168]
+sim_triangle = [0, 0, 0, 0, 0]
+sim_xmas = [409.7, 259.2, 173.6, 123, 91.2]
+
 SIMULATED_DATA = [sim_straight, sim_tcross, sim_triangle, sim_xmas]
 # ------------------------------------------------------------
 
@@ -88,6 +95,13 @@ BEACON_PHASE_DIRS = [bconPhase_straight, bconPhase_tcross, bconPhase_triangle, b
 PHASE_DIRS = [BEACON_PHASE_DIRS, DEVKIT_PHASE_DIRS]
 # ------------------------------------------------------------
 
+
+
+
+
+
+
+
 # -----ACCESSORS-----------------------------------------------------
 # Return list of all test directories
 def getTestDirs():
@@ -122,8 +136,17 @@ def getDevKitPhaseDirs():
 
 # Return directory listing for both devices by configuration
 # DISTANCE
-def getStraightDirs_Dist():
-    return [BEACON_DIST_DIRS[0], DEVKIT_DIST_DIRS[0]]
+def getStraightDirs_Dist(device = ''):
+    D = device.upper()
+    if D == '':
+        return [BEACON_DIST_DIRS[0], DEVKIT_DIST_DIRS[0]]
+    elif D == 'BEACON':
+        return BEACON_DIST_DIRS[0]
+    elif D == 'DEVKIT':
+        return DEVKIT_DIST_DIRS[0]
+    else:
+        print("ERROR: There was a problem retrieving straight up configuration directories")
+        exit
 def getTCrossDirs_Dist():
     return [BEACON_DIST_DIRS[1], DEVKIT_DIST_DIRS[1]]
 def getTriangleDirs_Dist():
@@ -143,7 +166,7 @@ def getTriangleDirs_Phase():
 def getXmasDirs_Phase():
     i = 3
     return [BEACON_PHASE_DIRS[i], DEVKIT_PHASE_DIRS[i]]
-# ------------------------------------------------------------
+# SIMULATED
 def getSimulatedData():
     return SIMULATED_DATA
 def getSimulatedData(config):
@@ -161,6 +184,7 @@ def getSimulatedData(config):
         print('ERROR: There was a problem trying to return simulated data...')
         exit
     return sorted(SIMULATED_DATA[i], reverse=True)
+# ------------------------------------------------------------
 
 
 

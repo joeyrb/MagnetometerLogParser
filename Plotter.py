@@ -14,19 +14,15 @@ def getPlotPoints(res, indx):
     for r in res:
         pts.append(r[indx])
     return pts
-
 # Return the min of the results data as plot points
 def plotMin(res):
     return getPlotPoints(res,0)
-
 # Return the MAX of the results data as plot points
 def plotMax(res):
     return getPlotPoints(res,1)
-
 # Return the center of the results data as plot points
 def plotCenter(res):
     return getPlotPoints(res, 2)
-
 # Return the amplitude of the results data as plot points
 def plotAmplitude(res):
     return getPlotPoints(res,3)
@@ -36,27 +32,22 @@ def plotAmplitude(res):
 # 
 # Axis: x=0, y=1, z=2
 # ----------------------------------------
-
 # Plot the min data by specified axis
 def plotAxisMin(res, axis):
     m = plotMin(res)
     return m[axis]
-
 # Plot the MAX data by specified axis
 def plotAxisMax(res, axis):
     M = plotMax(res)
     return M[axis]
-
 # Plot the center data by specified axis
 def plotAxisCenter(res,axis):
     c = plotCenter(res)
     return c[axis]
-
 # Plot the amplitude data by specified axis
 def plotAxisAmplitude(res, axis):
     a = plotAmplitude(res)
     return a[axis]
-
 # PLOT BY X
 def plotXmin(res):
     return plotAxisMin(res,0)
@@ -91,12 +82,11 @@ def plotZAmplitude(res):
 # ----------------------------------------
 
 # Generate the x-axis lables for the plot of the distance dataset (dds).
-def genDistXLabels(dds):
+def genDistXLabels(dds, offset=2):
     xs = []
-    for i in range(0, len(dds)+2):
+    for i in range(0, len(dds)+offset):
         xs.append(i+2)
     return xs
-
 # Generate the x-axis lables for the plot of the phase dataset (dds).
 def genPhaseXLabels(pds):
     pass
@@ -108,7 +98,7 @@ def genFigure(ds, ttl=''):
     else:
         p = figure(title=ttl, plot_width=500, plot_height=300)
     return p
-
+# Generate a distance plot from datasets
 def genDistPlot(beacon, devkit, sim):
     bcn_xs = genDistXLabels(beacon)
     dev_xs = genDistXLabels(devkit)
@@ -126,10 +116,10 @@ def genDistPlot(beacon, devkit, sim):
     sim_fig.line(sim_xs, sim, line_width = 2, color="orange", alpha = 0.5)
 
     return gridplot([[bc_fig, dk_fig, sim_fig]])
-
+# Generate a phase outage plot from datasets
 def genPhasePlot(bcon, dev, sim, config_type):
     pass
-
+# Generate plot based on specified configuration
 def genConfigPlot(bcon, dev, sim, config_type):
     c = config_type.upper()
     if isStraight(c):
@@ -168,6 +158,13 @@ def genXMasPlot():
     sim = dflts.getSimulatedData('xmas')
     return genDistPlot(beacon, devkit, sim)
 
+def genMultiLine(bcon, dev, sim):
+    p = figure(plot_width=500, plot_height=500)
+    xs = [genDistXLabels(bcon), genDistXLabels(dev), genDistXLabels(sim)]
+    ys = [bcon, dev, sim]
+    res_colors = ["lime", "navy", "red"]
+    return p.multi_line(xs, ys, color=res_colors)
+
 def isConfigType(config, type_check):
     c = config.upper()
     if c == type_check:
@@ -187,6 +184,67 @@ def isTriangle(c):
 def isXMas(c):
     return isConfigType(c , 'XMAS')
 
+''' 
+Create a single plot with multiple lines.
+INPUT:
+  *Each element of min, max, center, & amplitude 
+      contains values for x, y, & z as [x, y, z]
+  beacon = [[min], [max], [center], [amplitude]]
+  devkit = [[min], [max], [center], [amplitude]]
+  sim    = [[y-amplitude]]
+  axis   = (0 | 1 | 2)    // x=0, y=1, z=2
+  config = ('straight' | 'tcross' | 'triangle' | 'xmas')
+OUTPUT:
+  [p.line(beacon), p.line(devkit). p.line(sim)]
+DESCRIPTION:
+  return a list of line curves as figures for 
+  the beacon, devkit, and simulation data. The
+  returned result can be used by show() to 
+  plot all three curves on a single plot. 
+'''
+def genSingleDistPlot(axis, config, title):
+    # prepare title if requested
+    if title=='' or title==None:
+        t = None
+    else:
+        t = title
+    # prepare y_range if requested
+    yR=900
+    
+    # create analyzed data sets from file logs by searching by directory (y values)
+    beacon = anlyzr.getResultsFrom(dflts.getStraightDirs_Dist('beacon'))
+    devkit = anlyzr.getResultsFrom(dflts.getStraightDirs_Dist('devkit'))
+    sim = dflts.getSimulatedData(config)  # simulated data is hard coded; no directory
+
+    # generate x-axis labels for the plot intervals (x values)
+    xs_bcon = genDistXLabels(beacon)
+    xs_dev = genDistXLabels(devkit)
+    xs_sim = genDistXLabels(sim, 0)
+
+    # create list of lists with y values (ys) and x values (xs)
+    ys = [plotAxisAmplitude(beacon,axis), plotAxisAmplitude(devkit,axis), sim]
+    xs = [xs_bcon, xs_dev, xs_sim]
+
+    # define settings for the single plot that will contain the 3 curves
+    p=figure(
+        plot_height=500, 
+        plot_width=500,
+        title=t,
+        x_axis_label="Distance (feet)", 
+        y_axis_label="EM Intensity (mGauss)")
+
+    # define settings of plot with respect to the figures it contains (beacon, devkit, sim)
+    legends = ["Beacon", "DevKit", "Simulation"]
+    colors = ["lime", "navy", "firebrick"]
+    
+    # generate a line figure for each data set and add it to the plot
+    for i in range(0, 3):
+        p.line(xs[i], ys[i], color=colors[i], legend=legends[i])
+    
+    # return final generated plot that contains 3 curves (with legend)
+    return p
+        
+
 # 
 # 
 # 
@@ -200,7 +258,7 @@ def main():
     # devkit_res = anlyzr.getResults()
     # beacon_res = anlyzr.getResults()
 
-    output_file("./HTML/allconfigsdistances.html")
+    # output_file("./HTML/allconfigsdistances.html")
 
     
     # Generate and Display data results
@@ -216,11 +274,39 @@ def main():
 
     # TRIANGLE
     # output_file("./HTML/triangle.html")
-    show(genTrianglePlot())
+    # show(genTrianglePlot())
 
     # XMAS
     # output_file("./HTML/xmas.html")
     # show(genXMasPlot())
+
+
+
+    # STRAIGHT UP - (SINGLE PLOT)
+    output_file("./HTML/singleplot_allaxes_allconfigs.html")
+
+    str8X = genSingleDistPlot(0,'Straight',"Straight Up (X-axis)")
+    str8Y = genSingleDistPlot(1,'Straight',"Straight Up (Y-axis)")
+    str8Z = genSingleDistPlot(2,'Straight',"Straight Up (Z-axis)")
+    str8=[str8X,str8Y,str8Z]
+
+    tcrossX = genSingleDistPlot(0,'tcross',"T-Crossarm (X-axis)")
+    tcrossY = genSingleDistPlot(1,'tcross',"T-Crossarm (Y-axis)")
+    tcrossZ = genSingleDistPlot(2,'tcross',"T-Crossarm (Z-axis)")
+    T = [tcrossX,tcrossY,tcrossZ]
+
+    triX = genSingleDistPlot(0,'triangle',"Triangle (X-axis)")
+    triY = genSingleDistPlot(1,'triangle',"Triangle (Y-axis)")
+    triZ = genSingleDistPlot(2,'triangle',"Triangle (Z-axis)")
+    tri = [triX,triY,triZ]
+    
+    xmasX = genSingleDistPlot(0,'xmas',"XMas (X-axis)")
+    xmasY = genSingleDistPlot(1,'xmas',"XMas (Y-axis)")
+    xmasZ = genSingleDistPlot(2,'xmas',"XMas (Z-axis)")
+    xmas = [xmasX,xmasY,xmasZ]
+    
+    
+    show( gridplot([str8, T, tri, xmas], sizing_mode="fixed" ) )
 
 
 if __name__ == '__main__':
