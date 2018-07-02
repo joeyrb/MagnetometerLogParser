@@ -245,6 +245,29 @@ def genSingleDistPlot(axis, config, title):
     return p
         
 
+def genAllConfigsPlot():
+    str8X = genSingleDistPlot(0,'Straight',"Straight Up (X-axis)")
+    str8Y = genSingleDistPlot(1,'Straight',"Straight Up (Y-axis)")
+    str8Z = genSingleDistPlot(2,'Straight',"Straight Up (Z-axis)")
+    str8=[str8X,str8Y,str8Z]
+
+    tcrossX = genSingleDistPlot(0,'tcross',"T-Crossarm (X-axis)")
+    tcrossY = genSingleDistPlot(1,'tcross',"T-Crossarm (Y-axis)")
+    tcrossZ = genSingleDistPlot(2,'tcross',"T-Crossarm (Z-axis)")
+    T = [tcrossX,tcrossY,tcrossZ]
+
+    triX = genSingleDistPlot(0,'triangle',"Triangle (X-axis)")
+    triY = genSingleDistPlot(1,'triangle',"Triangle (Y-axis)")
+    triZ = genSingleDistPlot(2,'triangle',"Triangle (Z-axis)")
+    tri = [triX,triY,triZ]
+    
+    xmasX = genSingleDistPlot(0,'xmas',"XMas (X-axis)")
+    xmasY = genSingleDistPlot(1,'xmas',"XMas (Y-axis)")
+    xmasZ = genSingleDistPlot(2,'xmas',"XMas (Z-axis)")
+    xmas = [xmasX,xmasY,xmasZ]
+
+    return [str8, T, tri, xmas]
+
 # 
 # 
 # 
@@ -265,48 +288,26 @@ def main():
     #   (uncomment sections below to run that configuration)
 
     # STRAIGHT UP
-    output_file("./HTML/straight.html")
+    output_file("./HTML/straight.html", title="Straight Up")
     show(genStraightPlot())
 
     # TCROSS
-    # output_file("./HTML/tcross.html")
-    # show(genTCrossPlot())
+    output_file("./HTML/tcross.html", title="T-Crossarm")
+    show(genTCrossPlot())
 
     # TRIANGLE
-    # output_file("./HTML/triangle.html")
-    # show(genTrianglePlot())
+    output_file("./HTML/triangle.html", title="Triangle")
+    show(genTrianglePlot())
 
     # XMAS
-    # output_file("./HTML/xmas.html")
-    # show(genXMasPlot())
+    output_file("./HTML/xmas.html", title="X-Mas Tree")
+    show(genXMasPlot())
 
 
 
-    # STRAIGHT UP - (SINGLE PLOT)
-    output_file("./HTML/singleplot_allaxes_allconfigs.html")
-
-    str8X = genSingleDistPlot(0,'Straight',"Straight Up (X-axis)")
-    str8Y = genSingleDistPlot(1,'Straight',"Straight Up (Y-axis)")
-    str8Z = genSingleDistPlot(2,'Straight',"Straight Up (Z-axis)")
-    str8=[str8X,str8Y,str8Z]
-
-    tcrossX = genSingleDistPlot(0,'tcross',"T-Crossarm (X-axis)")
-    tcrossY = genSingleDistPlot(1,'tcross',"T-Crossarm (Y-axis)")
-    tcrossZ = genSingleDistPlot(2,'tcross',"T-Crossarm (Z-axis)")
-    T = [tcrossX,tcrossY,tcrossZ]
-
-    triX = genSingleDistPlot(0,'triangle',"Triangle (X-axis)")
-    triY = genSingleDistPlot(1,'triangle',"Triangle (Y-axis)")
-    triZ = genSingleDistPlot(2,'triangle',"Triangle (Z-axis)")
-    tri = [triX,triY,triZ]
-    
-    xmasX = genSingleDistPlot(0,'xmas',"XMas (X-axis)")
-    xmasY = genSingleDistPlot(1,'xmas',"XMas (Y-axis)")
-    xmasZ = genSingleDistPlot(2,'xmas',"XMas (Z-axis)")
-    xmas = [xmasX,xmasY,xmasZ]
-    
-    
-    show( gridplot([str8, T, tri, xmas], sizing_mode="fixed" ) )
+    # ALL CONFIGS PLOT
+    output_file( "./HTML/singleplot_allaxes_allconfigs.html", title="All Configs" )    
+    show( gridplot(genAllConfigsPlot(), sizing_mode="fixed" ) )
 
 
 if __name__ == '__main__':
