@@ -21,7 +21,6 @@ CWD = os.getcwd()
 
 # -----SIMULATION DATA-------------------------------------------------------
 # Simulated data results (taken from excel sheets by Brian Hemmelman)
-<<<<<<< HEAD
 # 9 POINTS
 # sim_straight = [394.6,222.4,144.9,120.9,102.5]
 # sim_tcross = [500,422,371,324,283,247,217,191,168]
@@ -32,13 +31,6 @@ sim_straight = [394.6, 222.4, 144.9, 120.9, 102.5]
 sim_tcross = [500, 371, 283, 217, 168]
 sim_triangle = [0, 0, 0, 0, 0]
 sim_xmas = [409.7, 259.2, 173.6, 123, 91.2]
-
-=======
-sim_straight = [394.6,222.4,144.9,120.9,102.5]
-sim_tcross = [500,422,371,324,283,247,217,191,168]
-sim_triangle = [0, 0, 0, 0, 0]
-sim_xmas = [409.7,324,259.2,210.5,173.6,145.1,123,105.4,91.2]
->>>>>>> 08547fd5b34dbf54731be1ee46dc953b50ee6305
 SIMULATED_DATA = [sim_straight, sim_tcross, sim_triangle, sim_xmas]
 # ------------------------------------------------------------
 
