@@ -87,7 +87,7 @@ def genDistXLabels(dds, offset=2):
     for i in range(0, len(dds)+offset):
         xs.append(i+2)
     return xs
-# Generate the x-axis lables for the plot of the phase dataset (dds).
+# Generate the x-axis lables for the plot of the phase dataset (pds).
 def genPhaseXLabels(pds):
     pass
 
@@ -212,8 +212,10 @@ def genSingleDistPlot(axis, config, title):
     yR=900
     
     # create analyzed data sets from file logs by searching by directory (y values)
-    beacon = anlyzr.getResultsFrom(dflts.getStraightDirs_Dist('beacon'))
-    devkit = anlyzr.getResultsFrom(dflts.getStraightDirs_Dist('devkit'))
+    # beacon = anlyzr.getResultsFrom(dflts.getStraightDirs_Dist('beacon'))
+    # devkit = anlyzr.getResultsFrom(dflts.getStraightDirs_Dist('devkit'))
+    beacon = anlyzr.getResultsFrom(dflts.getDistDirs(config, 'beacon'))
+    devkit = anlyzr.getResultsFrom(dflts.getDistDirs(config, 'devkit'))
     sim = dflts.getSimulatedData(config)  # simulated data is hard coded; no directory
 
     # generate x-axis labels for the plot intervals (x values)
@@ -294,9 +296,9 @@ def main():
     # show(genSingleDistPlot(2, 'straight', "Straight Up (Z)"))
 
     # TCROSS
-    output_file("./HTML/tcross_singleaxis.html", title="T-Crossarm")
-    show(genTCrossPlot())
-    # show(genSingleDistPlot(2, 'tcross', "T-Crossarm (Z)"))
+    # output_file("./HTML/tcross_singleaxis.html", title="T-Crossarm")
+    # show(genTCrossPlot())
+    # show(genSingleDistPlot(2, 'tcross', "T-Crossarm (X)"))
 
     # TRIANGLE
     # output_file("./HTML/triangle.html", title="Triangle")
@@ -309,8 +311,8 @@ def main():
 
 
     # ALL CONFIGS PLOT
-    # output_file( "./HTML/singleplot_allaxes_allconfigs.html", title="All Configs" )
-    # show( gridplot(genAllConfigsPlot(), sizing_mode="fixed" ) )
+    output_file( "./HTML/singleplot_allaxes_allconfigs.html", title="All Configs" )
+    show( gridplot(genAllConfigsPlot(), sizing_mode="fixed" ) )
 
 
 if __name__ == '__main__':

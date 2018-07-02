@@ -137,21 +137,33 @@ def getDevKitPhaseDirs():
 # DISTANCE
 # Return correct path according to configuration and device from input
 def getDistDirs(config, device):
-    C = config.upper()
     D = device.upper()
+    C = config.upper()
+    dist_list = []
+    c = -1
     # decide which configuration
     if C == 'STRAIGHT':
-        pass
+        c = 0
     elif C == 'TCROSS':
-        pass
+        c = 1
     elif C == 'TRIANGLE':
-        pass
+        c = 2
     elif C == 'XMAS':
-        pass
+        c = 3
     else:
         print("ERROR: There was a problem getting distance directories.")
         exit
     # decide which device
+    if D == 'BEACON':
+        dist_list = BEACON_DIST_DIRS[c]
+    elif D == 'DEVKIT':
+        dist_list = DEVKIT_DIST_DIRS[c]
+    elif D == 'SIM' or D == 'SIMULATED':
+        dist_list = getSimulatedData(C)
+    else:
+        print("ERROR: There was a problem getting distance directories.")
+        exit
+    return dist_list
 
 
 def getStraightDirs_Dist(device = ''):
@@ -207,7 +219,7 @@ def getSimulatedData(config):
 
 
 def main():
-    pass
+    print(getDistDirs('xmas', 'sim'))
 
 if __name__ == '__main__':
     main()
