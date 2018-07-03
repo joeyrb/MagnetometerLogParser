@@ -9,7 +9,6 @@ author: Joey Brown
 import os
 from bokeh.layouts import gridplot
 from bokeh.plotting import figure, output_file, show
-import Analyzer as anlyzr
 # ------------------------------------------------------------
 
 

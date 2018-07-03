@@ -3,32 +3,43 @@ Report results from the data gathered while testing.
 
 author: Joey Brown
 '''
-import Parser as prsr
 import math
+import Parser as prsr
 
 
 # Return results from data as min, max, center, amplitude for x, y, and z
-def getResults():
-    values = prsr.getValues()
-    
+def getResults(device='', config=''):
+    if device != '' and config != '':
+        values = prsr.getPhaseValues(device, config)
+    else:
+        values = prsr.getValues()
     x_vals = []
     y_vals = []
     z_vals = []
-
     for v in values:
         x_vals.append(prsr.getXValues(v))
         y_vals.append(prsr.getYValues(v))
         z_vals.append(prsr.getZValues(v))
     return getXResults(x_vals), getYResults(y_vals), getZResults(z_vals)
 
+# # Override function
+# def getResults(device, config):
+#     values = prsr.getValues()
+#     x_vals = []
+#     y_vals = []
+#     z_vals = []
+#     for v in values:
+#         x_vals.append(prsr.getXValues(v))
+#         y_vals.append(prsr.getYValues(v))
+#         z_vals.append(prsr.getZValues(v))
+#     return getXResults(x_vals), getYResults(y_vals), getZResults(z_vals)
+
 # Return results from a specified directory
 def getResultsFrom(directory):
     values = prsr.getValuesFrom(directory)
-    
     x_vals = []
     y_vals = []
     z_vals = []
-
     for v in values:
         x_vals.append(prsr.getXValues(v))
         y_vals.append(prsr.getYValues(v))
@@ -95,7 +106,11 @@ def getZResults(vs):
 # 
 
 def main():
+    ''' DISTANCE/ example: '''
     print(getResults())
+
+    ''' PHASE/ example: '''
+    print(getResults('Beacon', 'straight'))
 
 if __name__ == '__main__':
     main()

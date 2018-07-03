@@ -5,12 +5,18 @@ author: Joey Brown
 '''
 import os
 import csv
-import Handler as hdlr
 import Reader as rdr
 
-# Returned parsed data
+# Used with DISTANCE/ directory
+# Return parsed data
 def getValues():
     ds = rdr.getData()
+    return parseDataSet(ds)
+
+# Used with PHASE/ directory
+# Return parsed data
+def getPhaseValues(device, config):
+    ds = rdr.getPhaseData(device, config)
     return parseDataSet(ds)
 
 # Return parsed data from specified directory
@@ -79,7 +85,6 @@ def getKeychain(ds):
     for k in ds:
         for v in k.keys():
             keychain.append(v)
-        # keychain.append(k.keys())
     return keychain
 
 def getValueList(vs):
@@ -132,17 +137,22 @@ def scale(ds, scale_factor):
 # 
 
 def main():
+    ''' DISTANCE/ example: '''
     print(getValues())
+
+    ''' PHASE/ example: '''
+    print(getPhaseValues('DevKit', 'straight'))
+
+    ''' Uncomment below to view data set list '''
     # ds = getValues()
-
-    # Scale the beacon's data from Gauss to mGauss (x1000)
+    # # Scale the beacon's data from Gauss to mGauss (x1000)
     # print(scale(ds, 1000))
-
-    # # Uncomment to view data set list
     # data_list = getValues()
     # for dl in data_list:
     #     print(dl)
     #     print("\n\n")
+
+    
 
 if __name__ == '__main__':
     main()

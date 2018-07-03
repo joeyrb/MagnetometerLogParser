@@ -7,6 +7,7 @@ from bokeh.layouts import gridplot
 from bokeh.plotting import figure, output_file, show
 import Analyzer as anlyzr
 import Defaults as dflts
+import Parser as prsr
 
 # Extract points from result data set (res) in a format that is compatible with bokeh plot module
 def getPlotPoints(res, indx):
@@ -184,49 +185,27 @@ def isTriangle(c):
 def isXMas(c):
     return isConfigType(c , 'XMAS')
 
-''' 
-Create a single plot with multiple lines.
-INPUT:
-  *Each element of min, max, center, & amplitude 
-      contains values for x, y, & z as [x, y, z]
-  beacon = [[min], [max], [center], [amplitude]]
-  devkit = [[min], [max], [center], [amplitude]]
-  sim    = [[y-amplitude]]
-  axis   = (0 | 1 | 2)    // x=0, y=1, z=2
-  config = ('straight' | 'tcross' | 'triangle' | 'xmas')
-OUTPUT:
-  [p.line(beacon), p.line(devkit). p.line(sim)]
-DESCRIPTION:
-  return a list of line curves as figures for 
-  the beacon, devkit, and simulation data. The
-  returned result can be used by show() to 
-  plot all three curves on a single plot. 
-'''
-def genSingleDistPlot(axis, config, title):
+# General function for generating a single plot
+def genSinglePlot(axis, config, title, phase=False):
     # prepare title if requested
     if title=='' or title==None:
         t = None
     else:
         t = title
-    # prepare y_range if requested
-    yR=900
+
+    if phase != True:
+        xs, ys = genSingleDistPlot(axis, config, title)
+        # define settings of plot with respect to the figures it contains (beacon, devkit, sim)
+        legends = ["Beacon", "DevKit", "Simulation"]
+        colors = ["lime", "navy", "firebrick"]
+        rng = 3
+    else:
+        xs, ys = genSinglePhasePlot(axis, config, title)
+        # define settings of plot with respect to the figures it contains (beacon, devkit, sim)
+        legends = ["Beacon", "DevKit"]
+        colors = ["lime", "navy"]
+        rng = 2
     
-    # create analyzed data sets from file logs by searching by directory (y values)
-    # beacon = anlyzr.getResultsFrom(dflts.getStraightDirs_Dist('beacon'))
-    # devkit = anlyzr.getResultsFrom(dflts.getStraightDirs_Dist('devkit'))
-    beacon = anlyzr.getResultsFrom(dflts.getDistDirs(config, 'beacon'))
-    devkit = anlyzr.getResultsFrom(dflts.getDistDirs(config, 'devkit'))
-    sim = dflts.getSimulatedData(config)  # simulated data is hard coded; no directory
-
-    # generate x-axis labels for the plot intervals (x values)
-    xs_bcon = genDistXLabels(beacon)
-    xs_dev = genDistXLabels(devkit)
-    xs_sim = genDistXLabels(sim, 0)
-
-    # create list of lists with y values (ys) and x values (xs)
-    ys = [plotAxisAmplitude(beacon,axis), plotAxisAmplitude(devkit,axis), sim]
-    xs = [xs_bcon, xs_dev, xs_sim]
-
     # define settings for the single plot that will contain the 3 curves
     p=figure(
         plot_height=500, 
@@ -234,41 +213,118 @@ def genSingleDistPlot(axis, config, title):
         title=t,
         x_axis_label="Distance (feet)", 
         y_axis_label="EM Intensity (mGauss)")
-
-    # define settings of plot with respect to the figures it contains (beacon, devkit, sim)
-    legends = ["Beacon", "DevKit", "Simulation"]
-    colors = ["lime", "navy", "firebrick"]
     
     # generate a line figure for each data set and add it to the plot
-    for i in range(0, 3):
-        p.line(xs[i], ys[i], color=colors[i], legend=legends[i])
-    
+    for i in range(0, rng):
+        p.line(xs[i], ys[i], color=colors[i], legend=legends[i], line_width=2)
     # return final generated plot that contains 3 curves (with legend)
     return p
-        
-# Generate a full page of all test configs
-def genAllConfigsPlot():
-    str8X = genSingleDistPlot(0,'Straight',"Straight Up (X-axis)")
-    str8Y = genSingleDistPlot(1,'Straight',"Straight Up (Y-axis)")
-    str8Z = genSingleDistPlot(2,'Straight',"Straight Up (Z-axis)")
-    str8=[str8X,str8Y,str8Z]
-
-    tcrossX = genSingleDistPlot(0,'tcross',"T-Crossarm (X-axis)")
-    tcrossY = genSingleDistPlot(1,'tcross',"T-Crossarm (Y-axis)")
-    tcrossZ = genSingleDistPlot(2,'tcross',"T-Crossarm (Z-axis)")
-    T = [tcrossX,tcrossY,tcrossZ]
-
-    triX = genSingleDistPlot(0,'triangle',"Triangle (X-axis)")
-    triY = genSingleDistPlot(1,'triangle',"Triangle (Y-axis)")
-    triZ = genSingleDistPlot(2,'triangle',"Triangle (Z-axis)")
-    tri = [triX,triY,triZ]
     
-    xmasX = genSingleDistPlot(0,'xmas',"XMas (X-axis)")
-    xmasY = genSingleDistPlot(1,'xmas',"XMas (Y-axis)")
-    xmasZ = genSingleDistPlot(2,'xmas',"XMas (Z-axis)")
-    xmas = [xmasX,xmasY,xmasZ]
 
+''' 
+    Create a single plot with multiple lines.
+    INPUT:
+    *Each element of min, max, center, & amplitude 
+        contains values for x, y, & z as [x, y, z]
+    beacon = [[min], [max], [center], [amplitude]]
+    devkit = [[min], [max], [center], [amplitude]]
+    sim    = [[y-amplitude]]
+    axis   = (0 | 1 | 2)    // x=0, y=1, z=2
+    config = ('straight' | 'tcross' | 'triangle' | 'xmas')
+    OUTPUT:
+    [p.line(beacon), p.line(devkit). p.line(sim)]
+    DESCRIPTION:
+    return a list of line curves as figures for 
+    the beacon, devkit, and simulation data. The
+    returned result can be used by show() to 
+    plot all three curves on a single plot. 
+'''
+def genSingleDistPlot(axis, config, title):
+    # Get results from DISTANCE directories
+    # create analyzed data sets from file logs by searching by directory (y values)
+    beacon = anlyzr.getResultsFrom(dflts.getDistDirs(config, 'beacon'))
+    devkit = anlyzr.getResultsFrom(dflts.getDistDirs(config, 'devkit'))
+    sim = dflts.getSimulatedData(config)  # simulated data is hard coded or calculated; no directory
+    # generate x-axis labels for the plot intervals (x values)
+    xs_bcon = genDistXLabels(beacon)
+    xs_dev = genDistXLabels(devkit)
+    xs_sim = genDistXLabels(sim, 0)
+    # create list of lists with y values (ys) and x values (xs)
+    ys = [plotAxisAmplitude(beacon,axis), plotAxisAmplitude(devkit,axis), sim]
+    xs = [xs_bcon, xs_dev, xs_sim]
+    return xs, ys
+
+# Same as genSingleDistPlot() except modified for phase plots
+def genSinglePhasePlot(axis, config, title):
+    # simulated data is not used with phase outage data yet...
+    # Get results from PHASE directories
+
+    # beacon = anlyzr.getResults('Beacon', config)
+    # devkit = anlyzr.getResults('DevKit', config)
+    beacon = prsr.getPhaseValues('Beacon', config)
+    devkit = prsr.getPhaseValues('DevKit', config)
+    xs_bcon = genDistXLabels(beacon)
+    xs_dev = genDistXLabels(devkit)
+    ys = [plotAxisAmplitude(beacon,axis), plotAxisAmplitude(devkit,axis)]
+    xs = [xs_bcon, xs_dev]
+    return xs, ys
+
+# Generate a full page of all test configs; used by gridPlot()
+# Set phase=True to plot phase data; default = distance data plots
+'''
+    example:
+        show( gridplot( genAllConfigsPlot() ) )     
+'''
+def genAllConfigsPlot(phase=False):
+    if phase != True:
+        str8 = all_straight_dist()
+        T = all_tcross_dist()
+        tri = all_triangle_dist()
+        xmas = all_xmas_dist()
+    else:
+        str8 = all_straight_phase()
+        T = all_tcross_phase()
+        tri = all_triangle_phase()
+        xmas = all_xmas_phase()
     return [str8, T, tri, xmas]
+
+''' ALL SINGLE DISTANCE PLOTS '''
+def all_straight_dist(phase=False):
+    str8X = genSinglePlot(0,'Straight',"Straight Up (X-axis)", phase)
+    str8Y = genSinglePlot(1,'Straight',"Straight Up (Y-axis)", phase)
+    str8Z = genSinglePlot(2,'Straight',"Straight Up (Z-axis)", phase)
+    return [str8X,str8Y,str8Z]
+
+def all_tcross_dist(phase=False):
+    tcrossX = genSinglePlot(0,'tcross',"T-Crossarm (X-axis)", phase)
+    tcrossY = genSinglePlot(1,'tcross',"T-Crossarm (Y-axis)", phase)
+    tcrossZ = genSinglePlot(2,'tcross',"T-Crossarm (Z-axis)", phase)
+    return [tcrossX,tcrossY,tcrossZ]
+
+def all_triangle_dist(phase=False):
+    triX = genSinglePlot(0,'triangle',"Triangle (X-axis)", phase)
+    triY = genSinglePlot(1,'triangle',"Triangle (Y-axis)", phase)
+    triZ = genSinglePlot(2,'triangle',"Triangle (Z-axis)", phase)
+    return [triX,triY,triZ]
+
+def all_xmas_dist(phase=False):
+    xmasX = genSinglePlot(0,'xmas',"XMas (X-axis)", phase)
+    xmasY = genSinglePlot(1,'xmas',"XMas (Y-axis)", phase)
+    xmasZ = genSinglePlot(2,'xmas',"XMas (Z-axis)", phase)
+    return [xmasX,xmasY,xmasZ]
+
+''' ALL SINGLE PHASE PLOTS '''
+def all_straight_phase():
+    return all_straight_dist(phase=True)
+
+def all_tcross_phase():
+    return all_tcross_dist(phase=True)
+
+def all_triangle_phase():
+    return all_triangle_dist(phase=True)
+
+def all_xmas_phase():
+    return all_xmas_dist(phase=True)
 
 # 
 # 
@@ -284,6 +340,24 @@ def main():
     # beacon_res = anlyzr.getResults()
 
     # output_file("./HTML/allconfigsdistances.html")
+    output_file("./HTML/phasetest.html")
+    p = figure(title="Phase Test", plot_width=300, plot_height=300)
+    ys = prsr.getPhaseValues('Beacon', 'tcross')
+    ylst = []
+    for y in ys:
+        for i in y:
+            ylst.append(i[1])
+    print(len(ylst))
+    rng = 150*60
+    
+    i = 0
+    xs = []
+    for y in range(0, rng):
+        xs.append(i)
+        i = i+1
+    p.line(xs, ylst)
+    show(p)
+
 
     
     # Generate and Display data results
@@ -310,9 +384,13 @@ def main():
 
 
 
-    # ALL CONFIGS PLOT
-    output_file( "./HTML/singleplot_allaxes_allconfigs.html", title="All Configs" )
-    show( gridplot(genAllConfigsPlot(), sizing_mode="fixed" ) )
+    # # ALL DISTANCE CONFIGS PLOT
+    # output_file( "./HTML/singleplot_allaxes_allconfigs.html", title="All Configs" )
+    # show( gridplot(genAllConfigsPlot(), sizing_mode="fixed" ) )
+
+    # ALL PHASE CONFIGS PLOT
+    # output_file( "./HTML/singleplot_allaxes_allconfigs_phase.html", title="PHASE" )
+    # show( gridplot(genAllConfigsPlot(phase=True), sizing_mode="fixed" ) )
 
 
 if __name__ == '__main__':
