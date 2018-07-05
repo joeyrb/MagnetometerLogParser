@@ -5,6 +5,7 @@ author: Joey Brown
 '''
 from bokeh.layouts import gridplot
 from bokeh.plotting import figure, output_file, show
+from bokeh.models import Range1d
 import Analyzer as anlyzr
 import Defaults as dflts
 import Parser as prsr
@@ -210,6 +211,7 @@ def genSinglePlot(axis, config, title, phase=False):
     p=figure(
         plot_height=500, 
         plot_width=500,
+        y_range = (0,900),
         title=t,
         x_axis_label="Distance (feet)", 
         y_axis_label="EM Intensity (mGauss)")
@@ -339,24 +341,26 @@ def main():
     # devkit_res = anlyzr.getResults()
     # beacon_res = anlyzr.getResults()
 
-    # output_file("./HTML/allconfigsdistances.html")
-    output_file("./HTML/phasetest.html")
-    p = figure(title="Phase Test", plot_width=300, plot_height=300)
-    ys = prsr.getPhaseValues('Beacon', 'tcross')
-    ylst = []
-    for y in ys:
-        for i in y:
-            ylst.append(i[1])
-    print(len(ylst))
-    rng = 150*60
+    ''' PHASES '''
+    # output_file("./HTML/phasetest.html")
+    # p = figure(title="Phase Test", plot_width=500, plot_height=500)
+    # ys = prsr.getPhaseValues('Beacon', 'tcross')
+    # ylst = []
+    # for y in ys:
+    #     for i in y:
+    #         ylst.append(i[1])
+    # print(len(ylst))
+    # rng = 150*60
     
-    i = 0
-    xs = []
-    for y in range(0, rng):
-        xs.append(i)
-        i = i+1
-    p.line(xs, ylst)
-    show(p)
+    # i = 0
+    # xs = []
+    # for y in range(0, rng):
+    #     xs.append(i)
+    #     i = i+1
+    # p.line(xs, ylst)
+    # show(p)
+
+    # output_file("./HTML/allconfigsdistances.html")
 
 
     
@@ -364,23 +368,24 @@ def main():
     #   (uncomment sections below to run that configuration)
 
     # STRAIGHT UP
-    # output_file("./HTML/straight.html", title="Straight Up")
+    output_file("./HTML/straight.html", title="Straight Up")
     # output_file("./HTML/straight_singleaxis.html", title="Straight Up")
-    # show(genStraightPlot())
+    show(genStraightPlot())
     # show(genSingleDistPlot(2, 'straight', "Straight Up (Z)"))
 
     # TCROSS
+    output_file("./HTML/tcross.html", title="T-Crossarm")
     # output_file("./HTML/tcross_singleaxis.html", title="T-Crossarm")
-    # show(genTCrossPlot())
+    show(genTCrossPlot())
     # show(genSingleDistPlot(2, 'tcross', "T-Crossarm (X)"))
 
     # TRIANGLE
-    # output_file("./HTML/triangle.html", title="Triangle")
-    # show(genTrianglePlot())
+    output_file("./HTML/triangle.html", title="Triangle")
+    show(genTrianglePlot())
 
     # XMAS
-    # output_file("./HTML/xmas.html", title="X-Mas Tree")
-    # show(genXMasPlot())
+    output_file("./HTML/xmas.html", title="X-Mas Tree")
+    show(genXMasPlot())
 
 
 
