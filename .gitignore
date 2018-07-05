@@ -1,7 +1,10 @@
 *.pyc
+/__pycache__
 /NOTES
 /Testing
 /Beacon/*
 /DevKit/*
-/HTML/images/charts/PHASE
-/HTML/images/charts/PHASE/*
+/HTML/images/charts/PHASE/staight/*
+/HTML/images/charts/PHASE/tcross/*
+/HTML/images/charts/PHASE/triangle/*
+/HTML/images/charts/PHASE/xmas/*

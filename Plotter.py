@@ -5,7 +5,6 @@ author: Joey Brown
 '''
 from bokeh.layouts import gridplot
 from bokeh.plotting import figure, output_file, show
-from bokeh.models import Range1d
 import Analyzer as anlyzr
 import Defaults as dflts
 import Parser as prsr
@@ -199,19 +198,22 @@ def genSinglePlot(axis, config, title, phase=False):
         # define settings of plot with respect to the figures it contains (beacon, devkit, sim)
         legends = ["Beacon", "DevKit", "Simulation"]
         colors = ["lime", "navy", "firebrick"]
+        y_rng = 900
         rng = 3
     else:
         xs, ys = genSinglePhasePlot(axis, config, title)
         # define settings of plot with respect to the figures it contains (beacon, devkit, sim)
         legends = ["Beacon", "DevKit"]
         colors = ["lime", "navy"]
+        y_rng = 1100
         rng = 2
     
     # define settings for the single plot that will contain the 3 curves
     p=figure(
         plot_height=500, 
         plot_width=500,
-        y_range = (0,900),
+        y_range = (0,y_rng),
+        x_range = (0, 6),
         title=t,
         x_axis_label="Distance (feet)", 
         y_axis_label="EM Intensity (mGauss)")
@@ -368,24 +370,22 @@ def main():
     #   (uncomment sections below to run that configuration)
 
     # STRAIGHT UP
-    output_file("./HTML/straight.html", title="Straight Up")
-    # output_file("./HTML/straight_singleaxis.html", title="Straight Up")
-    show(genStraightPlot())
+    # output_file("./HTML/straight.html", title="Straight Up")
+    # show(genStraightPlot())
     # show(genSingleDistPlot(2, 'straight', "Straight Up (Z)"))
 
     # TCROSS
-    output_file("./HTML/tcross.html", title="T-Crossarm")
-    # output_file("./HTML/tcross_singleaxis.html", title="T-Crossarm")
-    show(genTCrossPlot())
+    # output_file("./HTML/tcross.html", title="T-Crossarm")
+    # show(genTCrossPlot())
     # show(genSingleDistPlot(2, 'tcross', "T-Crossarm (X)"))
 
     # TRIANGLE
-    output_file("./HTML/triangle.html", title="Triangle")
-    show(genTrianglePlot())
+    # output_file("./HTML/triangle.html", title="Triangle")
+    # show(genTrianglePlot())
 
     # XMAS
-    output_file("./HTML/xmas.html", title="X-Mas Tree")
-    show(genXMasPlot())
+    # output_file("./HTML/xmas.html", title="X-Mas Tree")
+    # show(genXMasPlot())
 
 
 
@@ -394,8 +394,8 @@ def main():
     # show( gridplot(genAllConfigsPlot(), sizing_mode="fixed" ) )
 
     # ALL PHASE CONFIGS PLOT
-    # output_file( "./HTML/singleplot_allaxes_allconfigs_phase.html", title="PHASE" )
-    # show( gridplot(genAllConfigsPlot(phase=True), sizing_mode="fixed" ) )
+    output_file( "./HTML/allconfigs_phase.html", title="PHASE" )
+    show( gridplot(genAllConfigsPlot(phase=True), sizing_mode="fixed" ) )
 
 
 if __name__ == '__main__':

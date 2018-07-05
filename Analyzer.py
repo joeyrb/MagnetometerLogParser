@@ -8,7 +8,7 @@ import Parser as prsr
 
 
 # Return results from data as min, max, center, amplitude for x, y, and z
-def getResults(device='', config=''):
+def getResults(device='', config='', raw=False):
     if device != '' and config != '':
         values = prsr.getPhaseValues(device, config)
     else:
@@ -20,7 +20,11 @@ def getResults(device='', config=''):
         x_vals.append(prsr.getXValues(v))
         y_vals.append(prsr.getYValues(v))
         z_vals.append(prsr.getZValues(v))
-    return getXResults(x_vals), getYResults(y_vals), getZResults(z_vals)
+
+    if raw != False:
+        return x_vals, y_vals, z_vals
+    else:
+        return getXResults(x_vals), getYResults(y_vals), getZResults(z_vals)
 
 # # Override function
 # def getResults(device, config):

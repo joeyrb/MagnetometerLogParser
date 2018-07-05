@@ -27,10 +27,14 @@ def getFiles():
 # Used with PHASE/ directory
 # Return files for all distance subdirectories
 def getPhaseFiles(device, config):
+    from platform import system
     # Configuration directories are always stored as lower case
     c = config.lower()
-    # Construct directory string and create a file list
-    phase_dir = CWD + '/' + str(device) + '/PHASE/' + c + '/'
+    # Construct directory string and create a file list according to the OS being used
+    if system().lower() == 'windows':
+        phase_dir = CWD + '\\' + str(device) + '\\PHASE\\' + c + '\\'
+    else:
+        phase_dir = CWD + '/' + str(device) + '/PHASE/' + c + '/'
     phase_dir_lst = sorted( getSubDirs(phase_dir) )
     # Get the file list for the files in all directories
     # (d = "directory")
