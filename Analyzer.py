@@ -13,6 +13,7 @@ def getResults(device='', config='', raw=False):
         values = prsr.getPhaseValues(device, config)
     else:
         values = prsr.getValues()
+    print(values[0])
     x_vals = []
     y_vals = []
     z_vals = []

@@ -7,7 +7,7 @@
 
     author: Joey Brown
 '''
-from bokeh.layouts import gridplot, row
+from bokeh.layouts import gridplot, row, column
 from bokeh.plotting import figure, output_file, show
 
 import Handler as hndlr
@@ -203,25 +203,20 @@ def main():
     
     output_file("./HTML/TEST/straight_phase.html", title='Straight Phase')
     
-    M = 500
+    M = 450
     X, Y, Z = gen_config_row('beacon','straight', M, M)
-    show(row([X,Y,Z]))
+    F = figure(plot_height=M, plot_width=M)
+    device_x,device_y,device_z,xs_Dx,xs_Dy,xs_Dz = gen_beacon_row(C)
+    
+    # F.multi_line(xs=[xs_Dx,xs_Dy,xs_Dz], ys=[device_x[0], device_y[0], device_z[0]])
+    
+    # r1 = row([X,Y,Z])
+    # r2 = row([F])
+    # c1 = column([r1, r2])
+    # show(c1)
 
-
-    # p = figure(plot_height=M, plot_width=M, toolbar_location="below")
-    # q = figure(plot_height=M, plot_width=M, toolbar_location="below")
-    # p.line(x = xs_x, y = bcon_ys_x[0], color="lime")
-    # q.line(x = xs_x, y = bcon_ys_x[1])
-    # from bokeh import layouts
-    # show(layouts.row([p,q]))
-
-    # bcon_ys_y = getY(C[0])
-    # xs_y = gen_xs(bcon_ys_y[0])
-    # devkit_ys_y = getY(C[1])
-
-    # bcon_ys_z = getZ(C[0])
-
-    # devkit_ys_z = getZ(C[1])
+    # show(row([X,Y,Z,F]))
+    
 
 if __name__ == '__main__':
     main()
